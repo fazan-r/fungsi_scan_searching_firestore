@@ -12,13 +12,16 @@ class RegisterPage extends StatelessWidget {
 
   static Widget create(BuildContext context) {
     final auth = Provider.of<AuthBase>(context, listen: false);
-    return Provider<RegisterBloc>(
-      create: (_) => RegisterBloc(auth: auth),
-      dispose:  (_, bloc) => bloc.dispose(),
-      child: Consumer<RegisterBloc>(
-        builder: (_, bloc, __) => RegisterPage(bloc: bloc),
+    return ChangeNotifierProvider<ValueNotifier<bool>>(
+      create: (_) => ValueNotifier<bool>(false),
+      child: Consumer<ValueNotifier<bool>>(
+        builder: (_, isLoading, __) => Provider<RegisterBloc>(
+          create: (_) => RegisterBloc(auth: auth, isLoading: isLoading),
+          child: Consumer<RegisterBloc>(
+            builder: (_, bloc, __) => RegisterPage(bloc: bloc),
+          ),
+        ),
       ),
-      
     );
   }
 
@@ -60,13 +63,9 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = Provider.of<ValueNotifier<bool>>(context);
     return Scaffold(
-      body: StreamBuilder<bool>(
-          stream: bloc.isLoadingStream,
-          initialData: false,
-          builder: (context, snapshot) {
-            return buildStack(context, snapshot.data);
-          }),
+      body: buildStack(context, isLoading.value),
     );
   }
 
