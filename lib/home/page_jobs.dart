@@ -1,9 +1,11 @@
+
 import 'package:aqs_final_project/reusable_widget/alert.dart';
 import 'package:aqs_final_project/services/auth.dart';
+import 'package:aqs_final_project/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+class JobsPage extends StatelessWidget {
   Future<void> _signOut(BuildContext context) async {
     try {
       final auth = Provider.of<AuthBase>(context, listen: false);
@@ -27,6 +29,15 @@ class HomePage extends StatelessWidget {
     }
   }
 
+  Future<void> _createForm(BuildContext context) async{
+    final database = Provider.of<Database>(context, listen: false);
+    await database.createForm({
+      'name' : 'blogging',
+      'rate per hour' : 10,
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +52,7 @@ class HomePage extends StatelessWidget {
             end: FractionalOffset.bottomCenter,
           )),
         ),
-        title: Text('AQS Dashboard'),
+        title: Text('Inbound Inspections'),
         actions: <Widget>[
           FlatButton(
             onPressed: () => _confirmSignOut(context),
@@ -52,6 +63,11 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => _createForm(context),
+      ),
     );
   }
+
 }

@@ -1,7 +1,8 @@
 
-import 'package:aqs_final_project/page_home.dart';
+import 'package:aqs_final_project/home/page_jobs.dart';
 import 'package:aqs_final_project/page_register.dart';
 import 'package:aqs_final_project/services/auth.dart';
+import 'package:aqs_final_project/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +19,9 @@ class LandingPage extends StatelessWidget {
             if (user == null){
               return RegisterPage.create(context);
             }
-            return HomePage();
+            return Provider<Database>(
+              create: (_) => FirestoreDatabase(uid: user.uid),
+              child: JobsPage(),);
           }
           return Scaffold(
             body: Center(
