@@ -7,18 +7,19 @@ import 'package:aqs_final_project/reusable_widget/alert_text.dart';
 import 'package:aqs_final_project/services/auth.dart';
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({Key key, @required this.bloc}) : super(key: key);
-  final RegisterBloc bloc;
+  const RegisterPage({Key key, @required this.manager, this.isLoading}) : super(key: key);
+  final RegisterManager manager;
+  final bool isLoading;
 
   static Widget create(BuildContext context) {
     final auth = Provider.of<AuthBase>(context, listen: false);
     return ChangeNotifierProvider<ValueNotifier<bool>>(
       create: (_) => ValueNotifier<bool>(false),
       child: Consumer<ValueNotifier<bool>>(
-        builder: (_, isLoading, __) => Provider<RegisterBloc>(
-          create: (_) => RegisterBloc(auth: auth, isLoading: isLoading),
-          child: Consumer<RegisterBloc>(
-            builder: (_, bloc, __) => RegisterPage(bloc: bloc),
+        builder: (_, isLoading, __) => Provider<RegisterManager>(
+          create: (_) => RegisterManager(auth: auth, isLoading: isLoading),
+          child: Consumer<RegisterManager>(
+            builder: (_, manager, __) => RegisterPage(manager: manager, isLoading: isLoading.value,),
           ),
         ),
       ),
@@ -39,7 +40,7 @@ class RegisterPage extends StatelessWidget {
 
   Future<void> _signInAnonymously(BuildContext context) async {
     try {
-      await bloc.signInAnonymously();
+      await manager.signInAnonymously();
     } on Exception catch (e) {
       _showingSignInError(context, e);
     }
@@ -47,7 +48,7 @@ class RegisterPage extends StatelessWidget {
 
   Future<void> _signInWithGoogle(BuildContext context) async {
     try {
-      await bloc.signInWithGoogle();
+      await manager.signInWithGoogle();
     } on Exception catch (e) {
       _showingSignInError(context, e);
     }
@@ -55,7 +56,7 @@ class RegisterPage extends StatelessWidget {
 
   Future<void> _signInWithFacebook(BuildContext context) async {
     try {
-      await bloc.signInWithFacebook();
+      await manager.signInWithFacebook();
     } on Exception catch (e) {
       _showingSignInError(context, e);
     }
@@ -63,13 +64,12 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLoading = Provider.of<ValueNotifier<bool>>(context);
     return Scaffold(
-      body: buildStack(context, isLoading.value),
+      body: buildStack(context,),
     );
   }
 
-  Widget buildStack(BuildContext context, bool isLoading) {
+  Widget buildStack(BuildContext context) {
     return Stack(
       children: <Widget>[
         Container(
@@ -130,7 +130,7 @@ class RegisterPage extends StatelessWidget {
                   height: 50,
                   width: 50,
                 ),
-                _buildHeader(isLoading),
+                _buildHeader(),
                 Container(
                   height: 85,
                 ),
@@ -190,7 +190,7 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(bool isLoading) {
+  Widget _buildHeader() {
     if (isLoading) {
       return Center(
         child: CircularProgressIndicator(),

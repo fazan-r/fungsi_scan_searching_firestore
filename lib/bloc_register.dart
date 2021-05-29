@@ -4,8 +4,8 @@ import 'package:aqs_final_project/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
-class RegisterBloc {
-  RegisterBloc( { @required this.auth, @required this.isLoading});
+class RegisterManager {
+  RegisterManager( { @required this.auth, @required this.isLoading});
   final AuthBase auth;
   final ValueNotifier<bool> isLoading;
 
