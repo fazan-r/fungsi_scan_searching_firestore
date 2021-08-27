@@ -85,23 +85,15 @@ class RegisterPage extends StatelessWidget {
           height: 30,
         ),
         Container(
-          margin: EdgeInsets.only(top: 70, left: 33),
+          margin: EdgeInsets.only(top: 90, left: 33),
           child: Text(
-            'ABU',
+            'Mobile Traceability',
             style: TextStyle(
                 color: Colors.white, fontSize: 45, fontFamily: 'Marcellusfams'),
           ),
         ),
         Container(
-          margin: EdgeInsets.only(top: 120, left: 33),
-          child: Text(
-            'Quality Control',
-            style: TextStyle(
-                color: Colors.white, fontSize: 45, fontFamily: 'Marcellusfams'),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 172, left: 33),
+          margin: EdgeInsets.only(top: 202, left: 33),
           child: Text(
             'System',
             style: TextStyle(
@@ -109,7 +101,7 @@ class RegisterPage extends StatelessWidget {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(top: 250),
+          margin: EdgeInsets.only(top: 320),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
@@ -132,7 +124,7 @@ class RegisterPage extends StatelessWidget {
                 ),
                 _buildHeader(),
                 Container(
-                  height: 85,
+                  height: 55,
                 ),
                 Text(
                   'or log in with',

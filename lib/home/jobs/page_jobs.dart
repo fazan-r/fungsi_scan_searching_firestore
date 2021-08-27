@@ -1,3 +1,4 @@
+import 'package:aqs_final_project/home/jobs/add_page_job.dart';
 import 'package:aqs_final_project/reusable_widget/alert.dart';
 import 'package:aqs_final_project/reusable_widget/alert_text.dart';
 import 'package:aqs_final_project/services/auth.dart';
@@ -5,8 +6,7 @@ import 'package:aqs_final_project/services/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'models/jobs.dart';
+import '../models/model_jobs.dart';
 
 class JobsPage extends StatelessWidget {
   Future<void> _signOut(BuildContext context) async {
@@ -31,20 +31,7 @@ class JobsPage extends StatelessWidget {
       _signOut(context);
     }
   }
-
-  Future<void> _createForm(BuildContext context) async {
-    try {
-      final database = Provider.of<Database>(context, listen: false);
-      await database.createForm(Job(name: 'blogging', ratePerHour: 123));
-    } on FirebaseException catch (e) {
-      showingExceptionAlertDialog(
-          context,
-          title: 'Operation Failed',
-          exception: e)
-      ;
-    }
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +46,7 @@ class JobsPage extends StatelessWidget {
             end: FractionalOffset.bottomCenter,
           )),
         ),
-        title: Text('Inbound Inspections'),
+        title: Text('Welcome!'),
         actions: <Widget>[
           FlatButton(
             onPressed: () => _confirmSignOut(context),
@@ -73,7 +60,7 @@ class JobsPage extends StatelessWidget {
       body: _buildContents(context),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => _createForm(context),
+        onPressed: () => AddJobPage.show(context),
       ),
     );
   }

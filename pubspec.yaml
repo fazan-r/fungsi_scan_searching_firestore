@@ -55,11 +55,8 @@ flutter:
   assets:
     - images/logo_aqs_besar.png
     - images/email_logo.png
-    - images/fb_logo2.png
-    - images/google_logo.png
     - images/anonymous_logo.png
     - images/anonymous_logo2.png
-    - images/anonymous_logo3.png
     - images/wh_cnk.png
   #   - images/a_dot_ham.jpeg
 

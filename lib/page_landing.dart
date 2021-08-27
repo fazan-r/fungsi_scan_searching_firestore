@@ -1,5 +1,6 @@
 
-import 'package:aqs_final_project/home/page_jobs.dart';
+import 'package:aqs_final_project/home/jobs/page_jobs.dart';
+import 'package:aqs_final_project/home/personal_information.dart';
 import 'package:aqs_final_project/page_register.dart';
 import 'package:aqs_final_project/services/auth.dart';
 import 'package:aqs_final_project/services/database.dart';
@@ -21,7 +22,7 @@ class LandingPage extends StatelessWidget {
             }
             return Provider<Database>(
               create: (_) => FirestoreDatabase(uid: user.uid),
-              child: JobsPage(),);
+              child: PersonalInformation(),);
           }
           return Scaffold(
             body: Center(
@@ -29,6 +30,5 @@ class LandingPage extends StatelessWidget {
             ),
           );
         });
-
   }
 }

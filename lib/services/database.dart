@@ -1,5 +1,5 @@
 
-import 'package:aqs_final_project/home/models/jobs.dart';
+import 'package:aqs_final_project/home/models/model_jobs.dart';
 import 'package:aqs_final_project/services/api_path.dart';
 import 'package:aqs_final_project/services/firestore_services.dart';
 import 'package:flutter/foundation.dart';
