@@ -1,5 +1,6 @@
 import 'package:aqs_final_project/reusable_widget/alert.dart';
 import 'package:aqs_final_project/services/auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -63,6 +64,20 @@ class _PersonalInformationState extends State<PersonalInformation> {
       }
     });
   }
+  
+  createUserInfo(){
+    DocumentReference ds = Firestore.instance.collection('users').doc(employeeID);
+    Map<String, dynamic> category = {
+      "User Name" : userName,
+      "Employee ID" : employeeID,
+      "Company Name" : companyName,
+      "Company Location" : companyLocation,
+      "Role" : typeCategory,
+    };
+  ds.set(category).whenComplete(
+          (){print('Completed');}
+          );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +109,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
         children: <Widget>[
           Container(
             width: MediaQuery.of(context).size.width,
-            height: 700,
+            height: 554,
             child: ListView(
               children: <Widget>[
                 Padding(padding: EdgeInsets.only(left: 16, right: 16),
@@ -187,7 +202,9 @@ class _PersonalInformationState extends State<PersonalInformation> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     FlatButton(
-                        onPressed: (){},
+                        onPressed: (){
+                          createUserInfo();
+                        },
                         child: Text('Submit'),
                       color: Colors.orange,
                     ),

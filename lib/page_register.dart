@@ -82,10 +82,7 @@ class RegisterPage extends StatelessWidget {
           ),
         ),
         Container(
-          height: 30,
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 90, left: 33),
+          margin: EdgeInsets.only(top: 32, left: 33),
           child: Text(
             'Mobile Traceability',
             style: TextStyle(
@@ -93,7 +90,7 @@ class RegisterPage extends StatelessWidget {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(top: 202, left: 33),
+          margin: EdgeInsets.only(top: 142, left: 33),
           child: Text(
             'System',
             style: TextStyle(
@@ -101,7 +98,7 @@ class RegisterPage extends StatelessWidget {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(top: 320),
+          margin: EdgeInsets.only(top: 220),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
@@ -118,13 +115,9 @@ class RegisterPage extends StatelessWidget {
                   ),
                 ),
                 EmailSignInFormStf(),
-                Container(
-                  height: 50,
-                  width: 50,
-                ),
                 _buildHeader(),
                 Container(
-                  height: 55,
+                  height: 10,
                 ),
                 Text(
                   'or log in with',
