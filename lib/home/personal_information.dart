@@ -1,3 +1,4 @@
+
 import 'package:aqs_final_project/reusable_widget/alert.dart';
 import 'package:aqs_final_project/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -78,6 +79,12 @@ class _PersonalInformationState extends State<PersonalInformation> {
           (){print('Completed');}
           );
   }
+
+  getUserInfo() async{
+    DocumentSnapshot userInfo = await Firestore.instance.collection('users').doc('f34170000').get();
+    print(userInfo);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -198,15 +205,28 @@ class _PersonalInformationState extends State<PersonalInformation> {
                     ),
                   ],
                 ),
+                Container(
+                  height: 10,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    FlatButton(
+                    Container(
+                      height: 40,
+                      width: 275,
+                      child: RaisedButton(
+                        shape: StadiumBorder(),
+                        elevation: 6,
                         onPressed: (){
                           createUserInfo();
+                          getUserInfo();
                         },
-                        child: Text('Submit'),
-                      color: Colors.orange,
+                        color: Colors.blue[900],
+                        child: Text(
+                          'Submit',
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                      ),
                     ),
                   ],
                 ),

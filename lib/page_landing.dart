@@ -1,4 +1,5 @@
 
+import 'package:aqs_final_project/home/dashboard.dart';
 import 'package:aqs_final_project/home/jobs/page_jobs.dart';
 import 'package:aqs_final_project/home/personal_information.dart';
 import 'package:aqs_final_project/page_register.dart';
@@ -22,7 +23,7 @@ class LandingPage extends StatelessWidget {
             }
             return Provider<Database>(
               create: (_) => FirestoreDatabase(uid: user.uid),
-              child: PersonalInformation(),);
+              child: Dashboard(),);
           }
           return Scaffold(
             body: Center(
