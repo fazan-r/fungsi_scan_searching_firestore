@@ -34,14 +34,14 @@ class _QRcodeGeneratorState extends State<QRcodeGenerator> {
             // ignore: deprecated_member_use
             FlatButton(
                 child: Text("Generate QR Code"),
-                onPressed: (){
-                  if(qrText.text.isNotEmpty){
+                onPressed: () async {
+                  if(qrText.text.isEmpty){
                     setState(() {
-                      qrData = "https:/flutter.dev";
+                      qrData = "";
                     });
                   } else{
                     setState(() {
-
+                      qrData = qrText.text;
                     });
                   }
                 },
