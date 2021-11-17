@@ -1,5 +1,7 @@
 
 
+import 'package:aqs_final_project/dashboard_item/search_page.dart';
+import 'package:aqs_final_project/dashboard_item/track_and_trace.dart';
 import 'package:aqs_final_project/home/personal_information.dart';
 import 'package:aqs_final_project/qr_code/qr_homepage.dart';
 import 'package:aqs_final_project/reusable_widget/alert.dart';
@@ -100,7 +102,9 @@ class _DashboardState extends State<Dashboard> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                         elevation: 6,
-                        onPressed: (){},
+                        onPressed: (){
+                          showSearch(context: context, delegate: ProductSearchPage());
+                        },
                         color: Colors.blue[900],
                         child: Text(
                           'Track & Trace',
