@@ -1,5 +1,7 @@
+import 'package:aqs_final_project/qr_code/coba_lagi.dart';
 import 'package:aqs_final_project/qr_code/qr_generator.dart';
 import 'package:aqs_final_project/qr_code/qr_scanner_cam.dart';
+// import 'package:aqs_final_project/qr_code/qr_scanner_cam.dart';
 import 'package:flutter/material.dart';
 
 class QrcodeHomePage extends StatefulWidget {
@@ -32,7 +34,9 @@ class _QrcodeHomePageState extends State<QrcodeHomePage> {
     );
   }
   
+  // ignore: non_constant_identifier_names
   Widget Button (String text, Widget widget){
+    // ignore: deprecated_member_use
     return FlatButton(
         padding: EdgeInsets.all(15.0),
         child: Text(text),
